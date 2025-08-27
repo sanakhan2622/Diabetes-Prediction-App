@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Diabetes Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #e0eaff);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: #1e3a8a;
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        nav a:hover {
+            color: #1e3a8a;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        /* Awareness Section */
+        .awareness-section {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .awareness-section h2 {
+            text-align: center;
+            color: #1e3a8a;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .awareness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .awareness-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .awareness-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .awareness-card.blue {
+            background: linear-gradient(135deg, #60a5fa, #1e3a8a);
+            color: #fff;
+        }
+
+        .awareness-card.red {
+            background: linear-gradient(135deg, #f87171, #b91c1c);
+            color: #fff;
+        }
+
+        .awareness-card.green {
+            background: linear-gradient(135deg, #4ade80, #15803d);
+            color: #fff;
+        }
+
+        .awareness-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background: #fff;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+        }
+
+        .tab {
+            padding: 1.2rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            background: #e5e7eb;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tab.active {
+            background: #fff;
+            color: #1e3a8a;
+            border-bottom: 4px solid #1e3a8a;
+        }
+
+        .tab:hover {
+            background: #d1d5db;
+        }
+
+        .tab-content {
+            display: none;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Prediction Form */
+        .prediction-form h2 {
+            color: #1e3a8a;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            display: grid;
+            gap: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        input {
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            border-color: #1e3a8a;
+            box-shadow: 0 0 5px rgba(30, 58, 138, 0.3);
+            outline: none;
+        }
+
+        button {
+            padding: 1.2rem;
+            background: #1e3a8a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background: #1e40af;
+            transform: scale(1.02);
+        }
+
+        .prediction-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.3rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .prediction-result.red {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 2px solid #b91c1c;
+        }
+
+        .prediction-result.yellow {
+            background: #fef9c3;
+            color: #d97706;
+            border: 2px solid #d97706;
+        }
+
+        .prediction-result.green {
+            background: #d1fae5;
+            color: #15803d;
+            border: 2px solid #15803d;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Example Table */
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .example-table th, .example-table td {
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .example-table th {
+            background: #1e3a8a;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .example-table td {
+            background: #f9fafb;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a8a;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .awareness-section h2 {
+                font-size: 2rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                text-align: center;
+                border-radius: 0;
+            }
+
+            .awareness-grid, .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">HealthCare Diabetes Center</div>
+            <nav>
+                <ul>
+                    <li><a href="#prediction" onclick="openTab('prediction')">Risk Prediction</a></li>
+                    <li><a href="#examples" onclick="openTab('examples')">Examples</a></li>
+                    <li><a href="#prevention" onclick="openTab('prevention')">Prevention</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="awareness-section">
+        <h2>Diabetes Awareness</h2>
+        <div class="awareness-grid">
+            <div class="awareness-card blue">
+                <h3>What is Diabetes?</h3>
+                <p>Diabetes is a chronic condition affecting blood sugar regulation. Types include Type 1, Type 2, and Gestational Diabetes, each requiring specific management.</p>
+            </div>
+            <div class="awareness-card red">
+                <h3>Risk Factors</h3>
+                <p>Obesity, family history, inactivity, and high blood pressure increase your risk. Early screening can help you take control of your health.</p>
+            </div>
+            <div class="awareness-card green">
+                <h3>Warning Signs</h3>
+                <p>Watch for symptoms like excessive thirst, frequent urination, fatigue, and blurred vision. Consult a doctor if you notice these signs.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="openTab('prediction')">Risk Prediction</div>
+            <div class="tab" onclick="openTab('examples')">Prediction Examples</div>
+            <div class="tab" onclick="openTab('prevention')">Prevention Tips</div>
+        </div>
+
+        <div id="prediction" class="tab-content active">
+            <div class="prediction-form">
+                <h2>Calculate Your Diabetes Risk</h2>
+                <form id="predictionForm" onsubmit="handleSubmit(event)">
+                    <label for="pregnancies">Number of Pregnancies</label>
+                    <input type="number" id="pregnancies" name="pregnancies" min="0" required>
+
+                    <label for="glucose">Glucose Level (mg/dL)</label>
+                    <input type="number" id="glucose" name="glucose" min="0" required>
+
+                    <label for="blood_pressure">Blood Pressure (mm Hg)</label>
+                    <input type="number" id="blood_pressure" name="blood_pressure" min="0" required>
+
+                    <label for="skin_thickness">Skin Thickness (mm)</label>
+                    <input type="number" id="skin_thickness" name="skin_thickness" min="0" required>
+
+                    <label for="insulin">Insulin Level (mu U/ml)</label>
+                    <input type="number" id="insulin" name="insulin" min="0" required>
+
+                    <label for="bmi">BMI (kg/m²)</label>
+                    <input type="number" step="0.1" id="bmi" name="bmi" min="0" required>
+
+                    <label for="diabetes_pedigree_function">Diabetes Pedigree Function</label>
+                    <input type="number" step="0.01" id="diabetes_pedigree_function" name="diabetes_pedigree_function" min="0" required>
+
+                    <label for="age">Age (years)</label>
+                    <input type="number" id="age" name="age" min="0" required>
+
+                    <button type="submit">Calculate Risk</button>
+                </form>
+                <div id="predictionResult" class="prediction-result"></div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <h2>Understanding the Prediction Tool</h2>
+            <p>Use the form to input health metrics. Below are examples showing how inputs translate to risk levels.</p>
+            <table class="example-table">
+                <tr>
+                    <th>Pregnancies</th>
+                    <th>Glucose</th>
+                    <th>Blood Pressure</th>
+                    <th>Skin Thickness</th>
+                    <th>Insulin</th>
+                    <th>BMI</th>
+                    <th>Pedigree</th>
+                    <th>Age</th>
+                    <th>Outcome</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>88</td>
+                    <td>66</td>
+                    <td>15</td>
+                    <td>90</td>
+                    <td>22.5</td>
+                    <td>0.20</td>
+                    <td>25</td>
+                    <td style="color: #15803d;">Low Risk (Green)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>130</td>
+                    <td>75</td>
+                    <td>28</td>
+                    <td>115</td>
+                    <td>30.8</td>
+                    <td>0.50</td>
+                    <td>40</td>
+                    <td style="color: #d97706;">Moderate Risk (Yellow)</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>165</td>
+                    <td>85</td>
+                    <td>35</td>
+                    <td>135</td>
+                    <td>36.4</td>
+                    <td>0.85</td>
+                    <td>52</td>
+                    <td style="color: #b91c1c;">High Risk (Red)</td>
+                </tr>
+            </table>
+            <p><strong>Note:</strong> Results are based on a machine learning model and are for informational purposes only. Always seek professional medical advice.</p>
+        </div>
+
+        <div id="prevention" class="tab-content">
+            <h2>Preventing & Managing Diabetes</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Healthy Eating</h3>
+                    <p>Choose whole grains, vegetables, and lean proteins. Limit sugary drinks and processed foods to maintain stable blood sugar levels.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Active Lifestyle</h3>
+                    <p>Aim for 150 minutes of moderate exercise weekly, like jogging or cycling, to improve insulin sensitivity and overall health.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Routine Checkups</h3>
+                    <p>Regularly monitor blood sugar, blood pressure, and cholesterol. Early detection can prevent complications and support effective management.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 HealthCare Diabetes Center | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        function openTab(tabId) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelector(`[onclick="openTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+            window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = {
+                pregnancies: parseFloat(formData.get('pregnancies')),
+                glucose: parseFloat(formData.get('glucose')),
+                blood_pressure: parseFloat(formData.get('blood_pressure')),
+                skin_thickness: parseFloat(formData.get('skin_thickness')),
+                insulin: parseFloat(formData.get('insulin')),
+                bmi: parseFloat(formData.get('bmi')),
+                diabetes_pedigree_function: parseFloat(formData.get('diabetes_pedigree_function')),
+                age: parseFloat(formData.get('age'))
+            };
+
+            // Mock prediction logic (replace with actual API call)
+            let predictionText, predictionClass;
+            const mockScore = Math.random();
+            if (mockScore > 0.7) {
+                predictionText = 'High Risk: Likely diabetic. Please consult a healthcare professional immediately.';
+                predictionClass = 'red';
+            } else if (mockScore > 0.3) {
+                predictionText = 'Moderate Risk: Monitor your health closely and consult a doctor.';
+                predictionClass = 'yellow';
+            } else {
+                predictionText = 'Low Risk: Continue healthy habits to maintain low risk.';
+                predictionClass = 'green';
+            }
+
+            const resultDiv = document.getElementById('predictionResult');
+            resultDiv.textContent = predictionText;
+            resultDiv.className = 'prediction-result ' + predictionClass;
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
